@@ -18,6 +18,12 @@ volatile unsigned int speed;
 volatile unsigned int num1;
 volatile unsigned int num2;
 volatile char dir; 
+volatile unsigned int pass1;
+volatile unsigned int pass2;
+volatile unsigned int pass3;
+volatile unsigned int turn1;
+volatile unsigned int turn2;
+volatile unsigned int turn3;
 
 char _c51_external_startup (void)
 {
@@ -80,6 +86,66 @@ char _c51_external_startup (void)
 	return 0;
 }
 
+// Uses Timer3 to delay <us> micro-seconds. 
+void Timer3us(unsigned char us)
+{
+	unsigned char i;               // usec counter
+	
+	// The input for Timer 3 is selected as SYSCLK by setting T3ML (bit 6) of CKCON:
+	CKCON|=0b_0100_0000;
+	
+	TMR3RL = (-(SYSCLK)/1000000L); // Set Timer3 to overflow in 1us.
+	TMR3 = TMR3RL;                 // Initialize Timer3 for first overflow
+	
+	TMR3CN = 0x04;                 // Sart Timer3 and clear overflow flag
+	for (i = 0; i < us; i++)       // Count <us> overflows
+	{
+		while (!(TMR3CN & 0x80));  // Wait for overflow
+		TMR3CN &= ~(0x80);         // Clear overflow indicator
+	}
+	TMR3CN = 0 ;                   // Stop Timer3 and clear overflow flag
+}
+
+void waitms (unsigned int ms)
+{
+	unsigned int j;
+	unsigned char k;
+	for(j=0; j<ms; j++)
+		for (k=0; k<4; k++) Timer3us(250);
+}
+
+void locked (1){
+	  printf("
+	              .+ydmNMMMNmdyo-   \n              
+               `+mMMmyo+++++oydMMNs`   \n           
+              .mMN+`           `/mMN:    \n         
+             `mMm`                hMM-     \n       
+             /MM+                 .MMs       \n     
+             +MM:                 `MMy         \n   
+             +MM:                 `MMy          \n  
+            `oMMy++/-`      `-/+oooMMy           \n 
+         :yNMMNmddmMMMdo..smMMMmmdmNMMmy:        \n 
+       :dMMh/.      .+dMMMMd+-  ./:../hMMd:      \n 
+      oMMh.            -dd-     ./+sdy-.hMMo     \n 
+     /MMs                            :mo sMM/    \n 
+     mMN               .::.           .N/ NMm     \n
+     NMh             `dMMMMd`          ds hMN     \n
+     dMN`            /MMMMMM/          h-`NMd     \n
+     -MMy             oMMMM+             yMM-     \n
+      +MMy`           /MMMM-           `yMM+      \n
+       :NMm:          hMMMMs          :mMN:       \n
+        `yMMh-        dmmmmd        -hMMy`        \n
+          -hMMh:                  :hMMh-          \n
+            -yMMm+`            `+mMMy-            \n
+              .sNMNs-        -sNMNs.              \n
+                 /hMMmo.  .omMMh/                 \n
+                   .omMMddMMmo.                   \n
+                      .ommo.     \n");
+                      
+                      }
+         
+void unlocked(1){
+}
 
 void Timer2_ISR (void) interrupt 5
 {
@@ -102,10 +168,43 @@ void main (void)
 	printf("\x1b[2J"); // Clear screen using ANSI escape sequence.
 	printf("Square wave generator for the F38x.\r\n"
 	       "Check pins P2.0 and P2.1 with the oscilloscope.\r\n");
-	 
-		
+	
+	locked(1);
+	do {
+	printf("Please enter a 3 number password (numbers between 1-100).\n");
+	scanf("%d %d %d\n", &pass1, &pass2, &pass3);
+	printf("LOCKED    \n");
+	} while(pass1>100 || pass2>100 || pass3>100);
+	
+	do{
+	
+	printf("To unlock, please enter your password again.\n");
+	scanf("%d %d %d\n", &turn1, &turn2, &turn3);
+	}while(turn1!=pass1 || turn2!=pass2 || turn3!=pass3);
+	
+	if(turn1==pass1 && turn2==pass2 && turn3==pass3){
+	  printf("UNLOCKED  \n");
+	  
+	  num1 = turn1;
+	  num2 = 0;
+	  
+	  waitms(3000);
+	  
+	  num2 = turn2;
+	  num1 = 0;
+	  
+	  waitms(3000);
+	  
+	  num1 = turn3;
+	  num2 = 0;
+	  
+	  waitms(3000);
+	
+	}
+	
 	while(1)
 	{
+	  
 	  printf("Please enter a direction: R for clockwise or L for counterclockwise.\n");
 	  scanf("%s", &dir);
 	  printf("Please enter a speed between 0 and 100.\n");
