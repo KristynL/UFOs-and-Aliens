@@ -115,32 +115,31 @@ void waitms (unsigned int ms)
 }
 
 void locked (1){
-	  printf("
-	              .+ydmNMMMNmdyo-   \n              
-               `+mMMmyo+++++oydMMNs`   \n           
-              .mMN+`           `/mMN:    \n         
-             `mMm`                hMM-     \n       
-             /MM+                 .MMs       \n     
-             +MM:                 `MMy         \n   
-             +MM:                 `MMy          \n  
-            `oMMy++/-`      `-/+oooMMy           \n 
-         :yNMMNmddmMMMdo..smMMMmmdmNMMmy:        \n 
-       :dMMh/.      .+dMMMMd+-  ./:../hMMd:      \n 
-      oMMh.            -dd-     ./+sdy-.hMMo     \n 
-     /MMs                            :mo sMM/    \n 
-     mMN               .::.           .N/ NMm     \n
-     NMh             `dMMMMd`          ds hMN     \n
-     dMN`            /MMMMMM/          h-`NMd     \n
-     -MMy             oMMMM+             yMM-     \n
-      +MMy`           /MMMM-           `yMM+      \n
-       :NMm:          hMMMMs          :mMN:       \n
-        `yMMh-        dmmmmd        -hMMy`        \n
-          -hMMh:                  :hMMh-          \n
-            -yMMm+`            `+mMMy-            \n
-              .sNMNs-        -sNMNs.              \n
-                 /hMMmo.  .omMMh/                 \n
-                   .omMMddMMmo.                   \n
-                      .ommo.     \n");
+printf("             .+ydmNMMMNmdyo-   \n");              
+printf("          `+mMMmyo+++++oydMMNs`   \n");           
+printf("         .mMN+`           `/mMN:    \n");         
+printf("        `mMm`                hMM-     \n");       
+printf("        /MM+                 .MMs       \n");     
+printf("        +MM:                 `MMy         \n");   
+printf("        +MM:                 `MMy          \n");  
+printf("       `oMMy++/-`      `-/+oooMMy           \n");
+printf("    :yNMMNmddmMMMdo..smMMMmmdmNMMmy:        \n"); 
+printf("  :dMMh/.      .+dMMMMd+-  ./:../hMMd:      \n"); 
+printf(" oMMh.            -dd-     ./+sdy-.hMMo     \n");
+printf("/MMs                            :mo sMM/    \n");
+printf("mMN               .::.           .N/ NMm     \n");
+printf("NMh             `dMMMMd`          ds hMN     \n");
+printf("dMN`            /MMMMMM/          h-`NMd     \n");
+printf("-MMy             oMMMM+             yMM-     \n");
+printf(" +MMy`           /MMMM-           `yMM+      \n");
+printf("  :NMm:          hMMMMs          :mMN:       \n");
+printf("   `yMMh-        dmmmmd        -hMMy`        \n");
+printf("     -hMMh:                  :hMMh-          \n");
+printf("       -yMMm+`            `+mMMy-            \n");
+printf("         .sNMNs-        -sNMNs.              \n");
+printf("            /hMMmo.  .omMMh/                 \n");
+printf("              .omMMddMMmo.                   \n");
+printf("                 .ommo.     \n");
                       
                       }
          
