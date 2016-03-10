@@ -25,6 +25,9 @@ volatile unsigned int turn1;
 volatile unsigned int turn2;
 volatile unsigned int turn3;
 
+void locked(void);
+void unlocked(void);
+
 char _c51_external_startup (void)
 {
 	PCA0MD&=(~0x40) ;    // DISABLE WDT: clear Watchdog Enable bit
@@ -114,58 +117,60 @@ void waitms (unsigned int ms)
 		for (k=0; k<4; k++) Timer3us(250);
 }
 
-void locked (1){
-	  printf("
-	              .+ydmNMMMNmdyo-   \n              
-               `+mMMmyo+++++oydMMNs`   \n           
-              .mMN+`           `/mMN:    \n         
-             `mMm`                hMM-     \n       
-             /MM+                 .MMs       \n     
-             +MM:                 `MMy         \n   
-             +MM:                 `MMy          \n  
-            `oMMy++/-`      `-/+oooMMy           \n 
-         :yNMMNmddmMMMdo..smMMMmmdmNMMmy:        \n 
-       :dMMh/.      .+dMMMMd+-  ./:../hMMd:      \n 
-      oMMh.            -dd-     ./+sdy-.hMMo     \n 
-     /MMs                            :mo sMM/    \n 
-     mMN               .::.           .N/ NMm     \n
-     NMh             `dMMMMd`          ds hMN     \n
-     dMN`            /MMMMMM/          h-`NMd     \n
-     -MMy             oMMMM+             yMM-     \n
-      +MMy`           /MMMM-           `yMM+      \n
-       :NMm:          hMMMMs          :mMN:       \n
-        `yMMh-        dmmmmd        -hMMy`        \n
-          -hMMh:                  :hMMh-          \n
-            -yMMm+`            `+mMMy-            \n
-              .sNMNs-        -sNMNs.              \n
-                 /hMMmo.  .omMMh/                 \n
-                   .omMMddMMmo.                   \n
-                      .ommo.     \n");
+
+void locked (void) {
+printf("             .+ydmNMMMNmdyo-   \n");              
+printf("          `+mMMmyo+++++oydMMNs`   \n");           
+printf("         .mMN+`           `/mMN:    \n");         
+printf("        `mMm`                hMM-     \n");       
+printf("        /MM+                 .MMs       \n");     
+printf("        +MM:                 `MMy         \n");   
+printf("        +MM:                 `MMy          \n");  
+printf("       `oMMy++/-`      `-/+oooMMy           \n");
+printf("    :yNMMNmddmMMMdo..smMMMmmdmNMMmy:        \n"); 
+printf("  :dMMh/.      .+dMMMMd+-  ./:../hMMd:      \n"); 
+printf(" oMMh.            -dd-     ./+sdy-.hMMo     \n");
+printf("/MMs                            :mo sMM/    \n");
+printf("mMN               .::.           .N/ NMm     \n");
+printf("NMh             `dMMMMd`          ds hMN     \n");
+printf("dMN`            /MMMMMM/          h-`NMd     \n");
+printf("-MMy             oMMMM+             yMM-     \n");
+printf(" +MMy`           /MMMM-           `yMM+      \n");
+printf("  :NMm:          hMMMMs          :mMN:       \n");
+printf("   `yMMh-        dmmmmd        -hMMy`        \n");
+printf("     -hMMh:                  :hMMh-          \n");
+printf("       -yMMm+`            `+mMMy-            \n");
+printf("         .sNMNs-        -sNMNs.              \n");
+printf("            /hMMmo.  .omMMh/                 \n");
+printf("              .omMMddMMmo.                   \n");
+printf("                 .ommo.     \n");
                       
                       }
          
 void unlocked(){
 	                                                  
-        printf("	     	     -/+++/-	\n");	                                   
-        printf("	          .omNMMMMMNms. \n");	                            
-        printf("	       	 /mMMMMNmNMMMMN+   \n");	                         
-        printf("		:NMMMd/.`.:hMMMM+   \n");	                       
-        printf("		dMMMd`     `yMMMN   \n");	                      
-        printf("		NMMMo       /MMMM`  \n");	                       
-        printf("		NMMMo       /MMMM`  \n");	                        
-        printf("		NMMMo       /MMMM`  \n");	                        
-        printf(" /++++++++++++++MMMMh++.    /MMMM` \n");	         
-	printf("`NMMMMMMMMMMMMMMMMMMMMMs    -ssss` \n"); 	        
-        printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");	                  
-        printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");	                  
-        printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");	                  
-        printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");	                  
-        printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");	                 
-        printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");	                  
-        printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");               
-        printf(" ++++++++++++++++++++++-   \n");               
+printf("                     -/+++/-	\n");	                                   
+printf("                  .omNMMMMMNms. \n");	                            
+printf("                 /mMMMMNmNMMMMN+   \n");	                         
+printf("                :NMMMd/.`.:hMMMM+   \n");	                       
+printf("                dMMMd`     `yMMMN   \n");	                      
+printf("                NMMMo       /MMMM`  \n");	                       
+printf("                NMMMo       /MMMM`  \n");	                        
+printf("                NMMMo       /MMMM`  \n");	                        
+printf(" /++++++++++++++MMMMh++.    /MMMM` \n");	         
+printf("`NMMMMMMMMMMMMMMMMMMMMMs    -ssss` \n"); 	        
+printf("`MMMMMMMMMMMMMMMMMMMMMMs   			\n");	                  
+printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");	                  
+printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");	                  
+printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");	                  
+printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");	                 
+printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");	                  
+printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");               
+printf(" ++++++++++++++++++++++-   \n");               
 
 }
+
+
 
 void Timer2_ISR (void) interrupt 5
 {
@@ -189,11 +194,11 @@ void main (void)
 	printf("Square wave generator for the F38x.\r\n"
 	       "Check pins P2.0 and P2.1 with the oscilloscope.\r\n");
 	
-	locked(1);
 	do {
 	printf("Please enter a 3 number password (numbers between 1-100).\n");
 	scanf("%d %d %d\n", &pass1, &pass2, &pass3);
 	printf("LOCKED    \n");
+	locked();
 	} while(pass1>100 || pass2>100 || pass3>100);
 	
 	do{
@@ -217,9 +222,12 @@ void main (void)
 	  
 	  num1 = turn3;
 	  num2 = 0;
-	  		
+	  
 	  waitms(3000);
-	  unlocked();			//print image
+	  
+	  unlocked();
+	  
+	
 	}
 	
 	while(1)
