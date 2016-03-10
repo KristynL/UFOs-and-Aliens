@@ -14,8 +14,10 @@
 #define OUT1 P2_1
 
 volatile unsigned char pwm_count=0;
+volatile unsigned int speed;
 volatile unsigned int num1;
 volatile unsigned int num2;
+volatile char dir; 
 
 char _c51_external_startup (void)
 {
@@ -86,10 +88,11 @@ void Timer2_ISR (void) interrupt 5
 	pwm_count++;
 	if(pwm_count>100) pwm_count=0;
 	
+	//OUT0=pwm_count>num1?0:1;
+	//OUT1=pwm_count>num1?1:0;
+	
 	OUT0=pwm_count>num1?0:1;
 	OUT1=pwm_count>num2?0:1;
-	//OUT0=1;
-	//OUT1=0;
 }
 
 void main (void)
@@ -103,13 +106,27 @@ void main (void)
 		
 	while(1)
 	{
-	  printf("Please enter 2 numbers between 0 and 100.\n");
-	  scanf("%d %d", &num1, &num2);  
+	  printf("Please enter a direction: R for clockwise or L for counterclockwise.\n");
+	  scanf("%s", &dir);
+	  printf("Please enter a speed between 0 and 100.\n");
+	  scanf("%d", &speed);  
+	  
+	  
 	    //ask user for inputs until values are within range
-	do {
-		printf("Please enter 2 numbers between 0 and 100.\n");
-		scanf("%d %d", &num1, &num2);                   //%d or %u
-	}  while (num1>100 || num2>100); 
+	  while(speed>100){
+	  	printf("Please enter a speed between 0 and 100.\n");
+		scanf("%d", &speed); 
+		}
+	
+	if(dir=='R'){
+	  num1 = speed;
+	  num2 = 0;
+	  }
+	else if(dir=='L'){
+	  num2 = speed;
+	  num1 = 0;
+	 }
+	  	
 	
 	}
 }
