@@ -144,7 +144,27 @@ void locked (1){
                       
                       }
          
-void unlocked(1){
+void unlocked(){
+	                                                  
+        printf("	     	     -/+++/-	\n");	                                   
+        printf("	          .omNMMMMMNms. \n");	                            
+        printf("	       	 /mMMMMNmNMMMMN+   \n");	                         
+        printf("		:NMMMd/.`.:hMMMM+   \n");	                       
+        printf("		dMMMd`     `yMMMN   \n");	                      
+        printf("		NMMMo       /MMMM`  \n");	                       
+        printf("		NMMMo       /MMMM`  \n");	                        
+        printf("		NMMMo       /MMMM`  \n");	                        
+        printf(" /++++++++++++++MMMMh++.    /MMMM` \n");	         
+	printf("`NMMMMMMMMMMMMMMMMMMMMMs    -ssss` \n"); 	        
+        printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");	                  
+        printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");	                  
+        printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");	                  
+        printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");	                  
+        printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");	                 
+        printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");	                  
+        printf("`MMMMMMMMMMMMMMMMMMMMMMs   \n");               
+        printf(" ++++++++++++++++++++++-   \n");               
+
 }
 
 void Timer2_ISR (void) interrupt 5
@@ -197,9 +217,9 @@ void main (void)
 	  
 	  num1 = turn3;
 	  num2 = 0;
-	  
+	  		
 	  waitms(3000);
-	
+	  unlocked();			//print image
 	}
 	
 	while(1)
